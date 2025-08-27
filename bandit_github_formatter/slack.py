@@ -39,7 +39,7 @@ def notify(pr_link: str,comment_url: str,repo_name: str) -> str:
                     "emoji": True
                 },
                 "value": "link1",
-                "url": pr_link,
+                "url": pr_link or "https://github.com/#missing-pr-url-error",
                 "action_id": "button-action"
             }
         },
@@ -57,7 +57,7 @@ def notify(pr_link: str,comment_url: str,repo_name: str) -> str:
                     "emoji": True
                 },
                 "value": "link2",
-                "url": comment_url,
+                "url": comment_url or "https://github.com/#missing-bandit-comment-error",
                 "action_id": "button-action"
             }
         },
