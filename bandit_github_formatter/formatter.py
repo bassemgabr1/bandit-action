@@ -149,10 +149,10 @@ def slack_notify(comment_url: str):
     if os.getenv("GITHUB_EVENT_NAME") == "pull_request":
         with open(os.getenv("GITHUB_EVENT_PATH")) as json_file:
             event = json.load(json_file)
-            repo = event.get("repository", {}).get("full_name", "unknown-repo")
+            repo = event.get("repository", {}).get("full_name", "undefined/unknown-repo")
             pr_number = event.get("number")
             pr_url = f"https://github.com/{repo}/issues/{pr_number}"
-            slack.notify(pr_url, comment_url, repo)
+            slack.notify(pr_url, comment_url, repo.split("/")[-1])
 
 
 @test_properties.accepts_baseline
