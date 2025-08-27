@@ -151,6 +151,7 @@ def report(manager, fileobj, sev_level, conf_level, lines=-1):
     :param conf_level: Filtering confidence level
     :param lines: Number of lines to report, -1 for all
     """
+    slack.send_message("test",'bassem-test')
     bits = []
     if manager.results_count(sev_level, conf_level):
 
