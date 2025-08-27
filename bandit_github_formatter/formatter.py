@@ -173,5 +173,5 @@ def report(manager, fileobj, sev_level, conf_level, lines=-1):
 
         result = '\n'.join([bit for bit in bits]) + '\n'
 
-        slack.send_message(result)
+        slack.send_message(result,'bassem-test')
         comment_on_pr(result)
