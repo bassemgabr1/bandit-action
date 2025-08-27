@@ -34,7 +34,6 @@ from bandit.core import constants
 from bandit.core import docs_utils
 from bandit.core import test_properties
 from bandit_github_formatter import slack
-
 LOG = logging.getLogger(__name__)
 
 
@@ -140,6 +139,14 @@ def comment_on_pr(message):
 
             requests.post(request_path, headers=headers_dict, json={"body": message})
 
+def slack_notify():
+    if os.getenv("GITHUB_EVENT_NAME") == "pull_request":
+        with open(os.getenv("GITHUB_EVENT_PATH")) as json_file:
+            event = json.load(json_file)
+            pr_url = (
+                f"https://github.com/{event['repository']['full_name']}/issues/{event['number']}")
+            slack.notify(pr_url,pr_url,event['repository']['full_name'])
+
 
 @test_properties.accepts_baseline
 def report(manager, fileobj, sev_level, conf_level, lines=-1):
@@ -151,7 +158,6 @@ def report(manager, fileobj, sev_level, conf_level, lines=-1):
     :param conf_level: Filtering confidence level
     :param lines: Number of lines to report, -1 for all
     """
-    slack.send_message("test",'bassem-test')
     bits = []
     if manager.results_count(sev_level, conf_level):
 
@@ -173,6 +179,5 @@ def report(manager, fileobj, sev_level, conf_level, lines=-1):
         bits.append("</details>")
 
         result = '\n'.join([bit for bit in bits]) + '\n'
-
-        slack.send_message(result,'bassem-test')
+        slack_notify()
         comment_on_pr(result)
