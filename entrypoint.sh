@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #./entrypoint.sh . high high ./.venv 0 DEFAULT DEFAULT
 
