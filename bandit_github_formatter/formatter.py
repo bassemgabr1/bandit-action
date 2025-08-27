@@ -33,6 +33,7 @@ import requests
 from bandit.core import constants
 from bandit.core import docs_utils
 from bandit.core import test_properties
+from bandit_github_formatter import slack
 
 LOG = logging.getLogger(__name__)
 
@@ -172,4 +173,5 @@ def report(manager, fileobj, sev_level, conf_level, lines=-1):
 
         result = '\n'.join([bit for bit in bits]) + '\n'
 
+        slack.send_message(result)
         comment_on_pr(result)
