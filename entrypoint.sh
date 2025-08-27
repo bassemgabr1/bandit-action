@@ -59,9 +59,8 @@ else
 fi
 
 # select unique files/directories
-unique_directories=($(for dir in "${1[@]}"; do echo "${dir}"; done | sort -u))
+unique_directories=($(printf "%s\n" "${@:1}" | sort -u))
 
-# run bandit on each unique files/directories
 for dir in "${unique_directories[@]}"; do
     bandit -r $dir $LEVEL $CONFIDENCE $EXCLUDED_PATHS $EXIT_ZERO $SKIPS $INI_PATH
 done
