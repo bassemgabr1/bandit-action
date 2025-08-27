@@ -32,6 +32,9 @@ inputs:
   GITHUB_TOKEN:
     description: 'Github token of the repository (automatically created by Github)'
     required: true
+  SLACK_TOKEN:
+    description: 'Slack app token for slack notifications'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
