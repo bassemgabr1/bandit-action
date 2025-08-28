@@ -43,7 +43,7 @@ inputs:
   SLACK_CHANNEL:
     description: 'Slack channel where Bandit notifications will be sent'
     required: false
-  SLACK_CHANNEL:
+  SLACK_USERNAME:
     description: 'Username of the slack app'
     required: false
   
