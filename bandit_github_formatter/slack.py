@@ -4,7 +4,7 @@ import os
 # Sends message to Slack channel with given message
 def send_message(message: dict, SLACK_CHANNEL: str) -> dict:
     SLACK_TOKEN = os.getenv("INPUT_SLACK_TOKEN", "none")
-    SLACK_USERNAME = os.getenv("INPUT_SLACK_USERNAME", "bandit-test")
+    SLACK_USERNAME = os.getenv("INPUT_SLACK_USERNAME")
     client = WebClient(token=SLACK_TOKEN)
     client.chat_postMessage(
         channel=SLACK_CHANNEL, 
@@ -13,6 +13,7 @@ def send_message(message: dict, SLACK_CHANNEL: str) -> dict:
     )
 
 def notify(pr_link: str,comment_url: str,repo_name: str) -> str:
+    SLACK_CHANNEL = os.getenv("INPUT_SLACK_CHANNEL")
     message_blocks = [
         {
             "type": "header",
@@ -65,4 +66,4 @@ def notify(pr_link: str,comment_url: str,repo_name: str) -> str:
             "type": "divider"
         }
     ]
-    send_message(message_blocks, "bassem-test")
+    send_message(message_blocks, SLACK_CHANNEL)
