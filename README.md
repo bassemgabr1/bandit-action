@@ -53,7 +53,21 @@ Can be LOW, MEDIUM or HIGH. Default is UNDEFINED (everything).
 
 **Required** Github token of the repository (automatically created by Github)
 
+### `SLACK_NOTIFY`
 
+**Optional** Enables/disables Slack notifications (`true`/`false`, default: `false`)
+
+### `SLACK_TOKEN`
+
+**Optional** Slack app OAuth Token (`xoxb-...`) used to send slack notifications
+
+### `SLACK_CHANNEL`
+
+**Optional** Slack channel ID or name where notifications will be posted
+
+### `SLACK_USERNAME`
+
+**Optional** Username of the used slack app 
 
 ## Outputs
 
