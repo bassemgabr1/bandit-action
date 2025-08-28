@@ -187,5 +187,5 @@ def report(manager, fileobj, sev_level, conf_level, lines=-1):
 
         result = '\n'.join([bit for bit in bits]) + '\n'
         comment_url=comment_on_pr(result)
-        if(os.getenv("INPUT_SLACK_NOTIFY")):
+        if(os.getenv("INPUT_SLACK_NOTIFY") and comment_url):
             slack_notify(comment_url)

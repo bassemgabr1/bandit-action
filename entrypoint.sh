@@ -62,5 +62,5 @@ fi
 unique_directories=($(printf "%s\n" "${@:1}" | sort -u))
 
 for dir in "${unique_directories[@]}"; do
-    bandit -f github -r $dir $LEVEL $CONFIDENCE $EXCLUDED_PATHS $EXIT_ZERO $SKIPS $INI_PATH
+    bandit -f github -r $dir $LEVEL $CONFIDENCE $EXCLUDED_PATHS $SKIPS $INI_PATH
 done
